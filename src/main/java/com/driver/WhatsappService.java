@@ -154,7 +154,7 @@ public class WhatsappService {
             throw new Exception("User not found");
         }
         if(userMessageList.containsKey(user)) {
-            messageCount = userMessageList.get(user).size()-1;
+            messageCount = userMessageList.get(user).size()-2;
             userMessageList.remove(user);
         }
 
