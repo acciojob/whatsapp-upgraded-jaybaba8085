@@ -88,7 +88,7 @@ public class WhatsappService {
     }
 
 
-    public void changeAdmin(User approver, User user, Group group)throws Exception{
+    public String changeAdmin(User approver, User user, Group group)throws Exception{
 
         if(!groupHashMap.containsKey(group)){
             throw new Exception("Group does not exist");
@@ -122,6 +122,7 @@ public class WhatsappService {
         }
 
         groupHashMap.get(group).add(0,newAdmin);
+        return  "SUCCESS";
 
     }
     public int removeUser(User user)throws Exception{
@@ -169,4 +170,8 @@ public class WhatsappService {
 
     }
 
+    public String findMessage(Date start, Date end, int k) {
+
+        return "Wait";
+    }
 }
