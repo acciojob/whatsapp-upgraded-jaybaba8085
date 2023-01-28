@@ -145,8 +145,9 @@ public class WhatsappService {
                 if(groupUsers.get(0).equals(user)) {
                     throw new Exception("Cannot remove admin");
                 }
-                groupUsers.remove(user);
                 groupSize = groupUsers.size();
+                groupUsers.remove(user);
+
 
                 break;
             }
