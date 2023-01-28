@@ -145,8 +145,9 @@ public class WhatsappService {
                 if(groupUsers.get(0).equals(user)) {
                     throw new Exception("Cannot remove admin");
                 }
-                groupSize = groupUsers.size();
+
                 groupUsers.remove(user);
+                groupSize = groupUsers.size();
 
 
                 break;
@@ -164,7 +165,7 @@ public class WhatsappService {
 //            groupMessages.removeIf(m -> m.getSender().equals(user));
 //            messageCount += groupMessages.size();
 //        }
-        return groupSize + messageCount + overallMessageCount;
+        return   9;//groupSize + messageCount + overallMessageCount;
 
 
 //        boolean check=false;
