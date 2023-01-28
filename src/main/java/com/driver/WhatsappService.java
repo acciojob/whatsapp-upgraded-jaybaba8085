@@ -160,12 +160,35 @@ public class WhatsappService {
             messageCount = userMessageList.get(user).size();
             userMessageList.remove(user);
         }
+
+
+        List<Message> userMessages=userMessageList.get(user);
+
+        for(Group group:messagesInGroup.keySet()){
+            for(Message message:messagesInGroup.get(group)){
+                if(userMessages.contains(message)){
+                    messagesInGroup.get(group).remove(message);
+                }
+            }
+        }
+        for(Message message:messageList){
+            if(userMessages.contains(message)){
+                messageList.remove(message);
+            }
+        }
+        userMessageList.remove(user);
+
+        return groupSize + messagesInGroup.get(groupToRemoveFrom).size()+ messageList.size();
+
 //        if(messagesInGroup.containsKey(groupToRemoveFrom)) {
 //            List<Message> groupMessages = messagesInGroup.get(groupToRemoveFrom);
 //            groupMessages.removeIf(m -> m.getSender().equals(user));
 //            messageCount += groupMessages.size();
 //        }
-        return   9;//groupSize + messageCount + overallMessageCount;
+
+
+
+     //   return groupSize + messageCount + overallMessageCount;
 
 
 //        boolean check=false;
