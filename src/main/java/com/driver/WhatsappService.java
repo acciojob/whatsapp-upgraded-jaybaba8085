@@ -145,11 +145,8 @@ public class WhatsappService {
                 if(groupUsers.get(0).equals(user)) {
                     throw new Exception("Cannot remove admin");
                 }
-
                 groupUsers.remove(user);
                 groupSize = groupUsers.size();
-
-
                 break;
             }
         }
@@ -160,35 +157,17 @@ public class WhatsappService {
             messageCount = userMessageList.get(user).size();
             userMessageList.remove(user);
         }
-
-
-        List<Message> userMessages=userMessageList.get(user);
-
-        for(Group group:messagesInGroup.keySet()){
-            for(Message message:messagesInGroup.get(group)){
-                if(userMessages.contains(message)){
-                    messagesInGroup.get(group).remove(message);
+        if(messagesInGroup.containsKey(groupToRemoveFrom)) {
+            List<Message> groupMessages = messagesInGroup.get(groupToRemoveFrom);
+            for(Message message:groupMessages){
+                if(userMessageList.get(user).contains(message))
+                {
+                    messagesInGroup.get(groupToRemoveFrom).remove(message);
                 }
             }
+            messageCount += groupMessages.size();
         }
-        for(Message message:messageList){
-            if(userMessages.contains(message)){
-                messageList.remove(message);
-            }
-        }
-        userMessageList.remove(user);
-
-        return groupSize + messagesInGroup.get(groupToRemoveFrom).size()+ messageList.size();
-
-//        if(messagesInGroup.containsKey(groupToRemoveFrom)) {
-//            List<Message> groupMessages = messagesInGroup.get(groupToRemoveFrom);
-//            groupMessages.removeIf(m -> m.getSender().equals(user));
-//            messageCount += groupMessages.size();
-//        }
-
-
-
-     //   return groupSize + messageCount + overallMessageCount;
+        return groupSize + messagesInGroup.get(groupToRemoveFrom).size()+ overallMessageCount;
 
 
 //        boolean check=false;
