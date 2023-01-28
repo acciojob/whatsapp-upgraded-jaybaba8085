@@ -154,20 +154,12 @@ public class WhatsappService {
             throw new Exception("User not found");
         }
         if(userMessageList.containsKey(user)) {
-            messageCount = userMessageList.get(user).size();
+            messageCount = userMessageList.get(user).size()-1;
             userMessageList.remove(user);
         }
-        if(messagesInGroup.containsKey(groupToRemoveFrom)) {
-            List<Message> groupMessages = messagesInGroup.get(groupToRemoveFrom);
-            for(Message message:groupMessages){
-                if(userMessageList.get(user).contains(message))
-                {
-                    messagesInGroup.get(groupToRemoveFrom).remove(message);
-                }
-            }
-            messageCount += groupMessages.size();
-        }
-        return groupSize + messagesInGroup.get(groupToRemoveFrom).size()+ overallMessageCount;
+
+
+        return groupSize + messageCount + overallMessageCount;
 
 
 //        boolean check=false;
